@@ -9,7 +9,7 @@ const cors = require('cors')
 
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MLAB_URI || 'mongodb://bigloke:loke69@ds131137.mlab.com:31137/bigmongo' )
+mongoose.connect(process.env.MLAB_URI)
 app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}))
