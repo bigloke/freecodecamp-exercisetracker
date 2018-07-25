@@ -8,8 +8,8 @@ var urlHandler = require('./controllers/urlHandler.js');
 const cors = require('cors')
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MLAB_URI || 'mongodb://bigloke:loke69@ds131137.mlab.com:31137/bigmongo' )
 
+mongoose.connect(process.env.MLAB_URI || 'mongodb://bigloke:loke69@ds131137.mlab.com:31137/bigmongo' )
 app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}))
@@ -22,8 +22,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/exercise/new-user', urlHandler.addUser);
+app.post('/api/exercise/add', urlHandler.addExercise);
+app.get('/api/exercise/log', urlHandler.getExercise);
+app.get('/api/exercise/getall', urlHandler.getAllExercises);
 app.use('/api/user/addone', urlHandler.fillOne);
 app.get('/api/user/getall', urlHandler.getAllUsers);
+app.get('/api/user/cleanall', urlHandler.cleanAll);
 
 // Not found middleware
 app.use((req, res, next) => {

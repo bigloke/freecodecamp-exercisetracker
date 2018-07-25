@@ -37,13 +37,19 @@
 <script>
   fetch('/api/user/getall') // Call the fetch function passing the url of the API as a parameter
   .then((resp) => resp.json()) // Transform the data into json
-      .then(function (data) {
-        // Your code for handling the data you get from the API
-          var div = document.getElementById('userList');
-          div.innerHTML+= data.results;
+      .then(data => {
+       // Your code for handling the data you get from the API
+        data.forEach(element => {
+          var node = document.createElement("DIV");
+          var textnode = document.createTextNode('USERNAME  : '+ element.username + ' ID: ' + element._id);
+          node.appendChild(textnode);
+          document.getElementById('userList').appendChild(node);
+        });
+   
+
 
         
-      })
+     })
       .catch(function (err) {
         // This is where you run code if the server returns any errors
         console.log(err);
